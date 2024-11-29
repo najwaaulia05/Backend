@@ -80,22 +80,27 @@ The application uses **Cloud SQL (MySQL)** for structured data storage. Below ar
 
 The KulinerKita application provides several APIs for accessing dining place data and submitting ratings. Below are the available endpoints:
 
+---
+
 ### **1. Authentication and Data API**
 
-|     **Endpoint**      | **Method** |                   **Description**                   |
-| :-------------------: | :--------: | :-------------------------------------------------: |
-|      `/register`      |    POST    |          Endpoint to register a new user.           |
-|       `/login`        |    POST    |       Endpoint to log in and receive a token.       |
-|       `/places`       |    GET     |       Retrieves a list of all dining places.        |
-|    `/places/{id}`     |    GET     |    Retrieves details for a specific place by ID.    |
-| `/ratings/{place_id}` |    POST    | Endpoint to submit ratings and reviews for a place. |
+| **Endpoint**           | **Method** | **Description**                                         |
+|-------------------------|------------|---------------------------------------------------------|
+| `/login`               | POST       | Logs in a user and returns an authentication token.     |
+| `/banners`             | GET        | Retrieves a list of promotional banners.               |
+| `/categories`          | GET        | Retrieves a list of dining categories.                 |
+| `/restaurants/nearby`  | GET        | Retrieves nearby dining places based on latitude and longitude. |
+| `/restaurants/search`  | GET        | Searches for dining places by name or category.        |
+| `/restaurants/{id}`    | GET        | Retrieves detailed information for a specific restaurant by ID. |
+| `/ratings/{place_id}`  | POST       | Submits ratings and reviews for a specific dining place.|
+
+---
 
 ### **2. Machine Learning API**
 
-- **Predict Dining Place Type Based on Image**  
-  | **Endpoint** | **Method** | **Description** |  
-  |:--------------------:|:----------:|:----------------------------------------:|  
-  | `/predict` | POST | Upload an image and get the predicted type of dining place. |
+| **Endpoint** | **Method** | **Description**                                      |
+|--------------|------------|------------------------------------------------------|
+| `/predict`   | POST       | Uploads an image and predicts the type of dining place.|
 
 ---
 
