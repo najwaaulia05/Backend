@@ -82,7 +82,7 @@ The KulinerKita application provides several APIs for accessing dining place dat
 
 ---
 
-### **1. Authentication and Data API**
+### **Authentication and Data API**
 
 | **Endpoint**           | **Method** | **Description**                                         |
 |-------------------------|------------|---------------------------------------------------------|
@@ -93,14 +93,6 @@ The KulinerKita application provides several APIs for accessing dining place dat
 | `/restaurants/search`  | GET        | Searches for dining places by name or category.        |
 | `/restaurants/{id}`    | GET        | Retrieves detailed information for a specific restaurant by ID. |
 | `/ratings/{place_id}`  | POST       | Submits ratings and reviews for a specific dining place.|
-
----
-
-### **2. Machine Learning API**
-
-| **Endpoint** | **Method** | **Description**                                      |
-|--------------|------------|------------------------------------------------------|
-| `/predict`   | POST       | Uploads an image and predicts the type of dining place.|
 
 ---
 
