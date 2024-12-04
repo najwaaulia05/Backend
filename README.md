@@ -1,4 +1,4 @@
-# KulinerKita (# Team C242-PS155)  
+# KulinerKita-CC (# Team C242-PS155)  
 Members of Cloud Computing for Bangkit Academy Capstone Team C242-PS155  
 
 | Member                  | Student ID   | University                  | Status   |  
