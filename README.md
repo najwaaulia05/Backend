@@ -1,4 +1,14 @@
-# **KulinerKita - Cloud Computing Documentation**
+# KulinerKita (# Team C242-PS155)  
+Members of Cloud Computing for Bangkit Academy Capstone Team C242-PS155  
+
+| Member                  | Student ID   | University                  | Status   |  
+|:-----------------------:|:------------:|:---------------------------:|:--------:|  
+| Dzaki Akmal Rabbani Alqadrie | C312B4KY1214 | Universitas Sebelas Maret  | Active   |  
+| Fanes Arasadina          | C421B4KX1388 | STMIK Widya Utama           | Active   |  
+
+**This is the Cloud Computing repository for the KulinerKita application.**  
+
+---  
 
 ## **Overview**
 
