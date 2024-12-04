@@ -96,13 +96,11 @@ The KulinerKita application provides several APIs for accessing dining place dat
 
 | **Endpoint**           | **Method** | **Description**                                         |
 |-------------------------|------------|---------------------------------------------------------|
-| `/login`               | POST       | Logs in a user and returns an authentication token.     |
-| `/banners`             | GET        | Retrieves a list of promotional banners.               |
 | `/categories`          | GET        | Retrieves a list of dining categories.                 |
 | `/restaurants/nearby`  | GET        | Retrieves nearby dining places based on latitude and longitude. |
 | `/restaurants/search`  | GET        | Searches for dining places by name or category.        |
 | `/restaurants/{id}`    | GET        | Retrieves detailed information for a specific restaurant by ID. |
-| `/ratings/{place_id}`  | POST       | Submits ratings and reviews for a specific dining place.|
+| `/ratings/{place_id}`  | GET       | Retrieves ratings and reviews for a specific dining place.|
 
 ---
 
