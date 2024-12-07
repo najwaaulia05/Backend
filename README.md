@@ -133,10 +133,6 @@ backend-v2/
 
 The application uses **Cloud SQL (MySQL)** for structured data storage. Below are the main tables used in the KulinerKita database:
 
-a. The **places** table is related to the **categories** table via the **category_id**.
-b. The **operatinghours** table is related to the **places** table via the **place_id**.
-c. The **ratings** table is also related to the **places** table via the **place_id**.
-
 ### **1. Categories Table**
 
 - Stores categories of dining places (e.g., restaurant, cafe, street food).
@@ -199,6 +195,14 @@ c. The **ratings** table is also related to the **places** table via the **place
 | `id`           | INT (11, AUTO_INCREMENT) | Unique ID for each sub-district (kecamatan).                   |
 | `name`         | VARCHAR(255)           | Name of the sub-district (e.g., Kecamatan A).                  |
 | `kab_kota`     | VARCHAR(255)           | Name of the associated city or regency (kabupaten/kota).       |
+
+This section outlines the relationships between the tables in the database.
+
+## Relationships Between Tables
+
+- **places ↔ categories**: The **places** table is related to the **categories** table through the `category_id`.
+- **places ↔ operatinghours**: The **operatinghours** table is related to the **places** table via the `place_id`.
+- **places ↔ ratings**: The **ratings** table is related to the **places** table via the `place_id`.
 
 ---
 
