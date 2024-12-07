@@ -196,9 +196,7 @@ The application uses **Cloud SQL (MySQL)** for structured data storage. Below ar
 | `name`         | VARCHAR(255)           | Name of the sub-district (e.g., Kecamatan A).                  |
 | `kab_kota`     | VARCHAR(255)           | Name of the associated city or regency (kabupaten/kota).       |
 
-This section outlines the relationships between the tables in the database.
-
-## Relationships Between Tables
+# Relationships Between Tables
 
 - **places ↔ categories**: The **places** table is related to the **categories** table through the `category_id`.
 - **places ↔ operatinghours**: The **operatinghours** table is related to the **places** table via the `place_id`.
