@@ -10,28 +10,117 @@ Members of Cloud Computing for Bangkit Academy Capstone Team C242-PS155
 
 ---  
 
-## **Overview**
+# Restaurant Search API
 
-KulinerKita is a cloud-based platform that allows users to search for, rate, and get information about dining places around them. This project utilizes Google Cloud Platform (GCP) technologies, such as **Cloud SQL** for database management and **App Engine** for app deployment, to build a scalable and robust web application.
+A dynamic restaurant search API built with Node.js and Express. This API supports a wide range of filters for querying restaurants based on location, eco-friendliness, weather preferences, operating hours, ratings, reviews, and price range.
 
-## **Table of Contents**
+## Features
 
-1. [Cloud Architecture](#cloud-architecture)
-2. [Database Schema](#database-schema)
-3. [API Documentation](#api-documentation)
-4. [Deployment Steps](#deployment-steps)
-5. [How to Run Locally](#how-to-run-locally)
+- **City and Subdistrict Search**: Filter restaurants by city or specific subdistrict.
+- **Category-Based Search**: Find restaurants based on their category.
+- **Eco-Friendly Options**: Search for restaurants that are environmentally friendly.
+- **Weather Preferences**: Get recommendations for restaurants suitable for specific weather conditions.
+- **Operating Hours**: Search restaurants open in the morning, afternoon, night, or operating 24 hours.
+- **Ratings and Reviews**: Filter restaurants by minimum ratings and number of reviews.
+- **Price Range**: Query restaurants within a specific price range.
+- **Optimized Results**: Returns results with neatly formatted ratings and operating hours.
 
----
+## Installation
 
-## **Cloud Architecture**
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/kulinerkita/restaurant-search-api.git
+   cd restaurant-search-api
+   ```
 
-The **KulinerKita** application uses several services from **Google Cloud Platform (GCP)** to support its functionalities and scalability. The services include:
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-- **Cloud SQL (MySQL)** for relational database management.
-- **Google App Engine** for deploying the web application and APIs automatically.
-- **Google Cloud Storage** for storing image and media data.
-- **Cloud Functions** for event-driven backend functions.
+3. Set up the database connection:
+   - Create a `db.js` file in the project root with your database connection configuration.
+
+4. Start the server:
+   ```bash
+   node server.js
+   ```
+
+5. Access the API at:
+   ```
+   http://localhost:3000
+   ```
+
+## API Endpoints
+
+### `GET /restaurants/search`
+
+Search for restaurants based on various filters.
+
+#### Query Parameters
+
+| Parameter      | Type    | Description                                         |
+|----------------|---------|-----------------------------------------------------|
+| `city`         | String  | Filter by city.                                    |
+| `subdistrict`  | String  | Filter by subdistrict ID.                          |
+| `ecoFriendly`  | Boolean | Filter by eco-friendly status.                     |
+| `weather`      | String  | Filter by weather category.                        |
+| `categoryId`   | Number  | Filter by restaurant category ID.                  |
+| `openingHours` | String  | Filter by operating hours (e.g., `Morning`, `24 hours`). |
+| `minRating`    | Number  | Filter by minimum rating.                          |
+| `minReviews`   | Number  | Filter by minimum number of reviews.               |
+| `minPrice`     | Number  | Filter by minimum price.                           |
+| `maxPrice`     | Number  | Filter by maximum price.                           |
+
+#### Example Request
+```bash
+GET https://kulinerkita.et.r.appspot.com/restaurants/search?categoryId=6
+```
+
+#### Example Response
+```json
+[
+  {
+        "id": 246,
+        "name": "Selat Solo Tenda Biru - Dr. Wahidin",
+        "address": "Jl. Dr. Wahidin No.26, Purwosari, Kec. Laweyan, Kota Surakarta, Jawa Tengah 57142",
+        "phone_number": "082136659775",
+        "latitude": -7.5686559,
+        "longitude": 110.8052207,
+        "category_id": 6,
+        "categorize_weather": "Dingin",
+        "maps_url": "https://www.google.com/maps/place/Selat+Solo+Tenda+Biru+-+Dr.+Wahidin/@-7.5686559,110.8052207,764m/data=!3m2!1e3!4b1!4m6!3m5!1s0x2e7a15d40a61c385:0x97027f5ac68485d3!8m2!3d-7.5686559!4d110.8052207!16s%2Fg%2F11b6zv3lhm?authuser=0&entry=ttu&g_ep=EgoyMDI0MTExOS4yIKXMDSoASAFQAw%3D%3D",
+        "min_price": 25000,
+        "max_price": 50000,
+        "kecamatan_id": 1,
+        "eco_friendly": 0,
+        "rating": "4.60",
+        "reviews": 7090,
+        "operating_hours": {
+            "opening_time": "08:00:00",
+            "closing_time": "21:00:00"
+        }
+   }
+]
+```
+
+## Project Structure
+
+```
+restaurant-search-api/
+├── db.js              # Database connection configuration
+├── server.js          # Main application server
+└── package.json       # Node.js dependencies and scripts
+```
+
+## Technologies Used
+
+- **Node.js**: JavaScript runtime for building scalable applications.
+- **Express**: Web framework for Node.js.
+- **Cloud SQL (MySQL)**: Relational database management system.
+- **Google App Engine**: Deploying the application and APIs automatically.
+- **Cloud Run**: Deploying the machine learning models.
+- **Google Cloud Storage**: For storing image and media data. 
 
 ---
 
@@ -86,24 +175,6 @@ The application uses **Cloud SQL (MySQL)** for structured data storage. Below ar
 
 ---
 
-## **API Documentation**
-
-The KulinerKita application provides several APIs for accessing dining place data and submitting ratings. Below are the available endpoints:
-
----
-
-### **Authentication and Data API**
-
-| **Endpoint**           | **Method** | **Description**                                         |
-|-------------------------|------------|---------------------------------------------------------|
-| `/categories`          | GET        | Retrieves a list of dining categories.                 |
-| `/restaurants/nearby`  | GET        | Retrieves nearby dining places based on latitude and longitude. |
-| `/restaurants/search`  | GET        | Searches for dining places by name or category.        |
-| `/restaurants/{id}`    | GET        | Retrieves detailed information for a specific restaurant by ID. |
-| `/ratings/{place_id}`  | GET       | Retrieves ratings and reviews for a specific dining place.|
-
----
-
 ## **Deployment Steps**
 
 ### **1. Cloud SQL Database Setup**
@@ -120,12 +191,12 @@ The KulinerKita application provides several APIs for accessing dining place dat
    gcloud app deploy
    ```
 
-### **3. Cloud Function Deployment for ML API**
+### **3. Cloud Run Deployment for ML API**
 
-1. Create a **Cloud Function** for the image prediction API.
+1. Create a **Cloud Run** for the prediction API.
 2. Deploy the function using the GCP CLI:
    ```bash
-   gcloud functions deploy predictImage --runtime python39 --trigger-http --allow-unauthenticated
+   gcloud run deploy predict --runtime python39 --trigger-http --allow-unauthenticated
    ```
 
 ---
@@ -146,8 +217,19 @@ The KulinerKita application provides several APIs for accessing dining place dat
 
 ---
 
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Commit your changes and push the branch.
+4. Open a pull request describing your changes.
+
+---
+
 ## **License**
 
 This project is licensed under the [MIT License](LICENSE).
 
-For further questions, please contact the Cloud Computing team at KulinerKita.
+For further questions, please contact the Cloud Computing team at kulinerkitaofficial28@gmail.com.
