@@ -112,7 +112,7 @@ GET https://kulinerkita.et.r.appspot.com/restaurants/search?categoryId=6
 ## Project Structure
 
 ```
-restaurant-search-api/
+backend-v2/
 ├── db.js              # Database connection configuration
 ├── server.js          # Main application server
 └── package.json       # Node.js dependencies and scripts
