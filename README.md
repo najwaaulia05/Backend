@@ -133,6 +133,10 @@ backend-v2/
 
 The application uses **Cloud SQL (MySQL)** for structured data storage. Below are the main tables used in the KulinerKita database:
 
+a. The **places** table is related to the **categories** table via the **category_id**.
+b. The **operatinghours** table is related to the **places** table via the **place_id**.
+c. The **ratings** table is also related to the **places** table via the **place_id**.
+
 ### **1. Categories Table**
 
 - Stores categories of dining places (e.g., restaurant, cafe, street food).
