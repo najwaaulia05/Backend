@@ -1,16 +1,27 @@
+<div align="center">
+   
 # 🍲 KulinerKita - Cloud Computing
 ## 🍴 KulinerKita (Team C242-PS155) - CC Repository
 ![Nodejs Badge](https://img.shields.io/badge/-Nodejs-3C873A?style=for-the-badge&labelColor=black&logo=node.js&logoColor=3C873A)
 ![Express](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
+</div>
+
+<div align="justify">
+   
 **KulinerKita Cloud Computing Repository** for Bangkit Capstone Project. Building Scalable Cloud Infrastructure for a Culinary Platform with Serverless Functions and Cloud Databases.
 
 ## KulinerKita's Developer of Cloud Computing Bangkit Academy Capstone Team C242-PS155
+
+<div align="center">
+   
 |            Member           | Student ID |        Path        |                    Role                    |                                                       Contacts                                                      |
 | :-------------------------: | :--------: | :----------------: | :----------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
 | Dzaki Akmal Rabbani Alqadrie | C312B4KY1214  |  Cloud Computing  | Cloud Engineer |[dzakiakmal](https://github.com/dzakiakmal)|
 | Fanes Arasadina          | C421B4KX1388 |  Cloud Computing  | Cloud Engineer | [fanesarasy](https://github.com/fanesarasy) |
+
+</div>
 
 ---  
 
@@ -283,6 +294,8 @@ Contributions are welcome! Please follow these steps:
 4. Open a pull request describing your changes.
 
 ---
+
+</div>
 
 ## **License**
 
