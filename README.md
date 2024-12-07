@@ -131,76 +131,100 @@ backend-v2/
 
 ## **Database Schema**
 
-The application uses **Cloud SQL (MySQL)** for structured data storage. Below are the main tables used in the KulinerKita database:
+The database schema consists of several tables that are interrelated to manage restaurant data, including information on categories, locations, ratings, and operational hours. Below is a breakdown of each table and its relationships.
 
-### **1. Categories Table**
+## 1. `places` Table
+This table stores information about restaurants or dining places.
 
-- Stores categories of dining places (e.g., restaurant, cafe, street food).
+### Key Columns:
+- **id**: Primary key of the table.
+- **category_id**: Foreign key referencing the `categories` table (indicating the restaurant's category).
+- **kecamatan_id**: Foreign key referencing the `kecamatan` table (indicating the location of the restaurant).
 
-|   **Column**   |        **Type**        |             **Description**                           |
-| :------------: | :--------------------: | :---------------------------------------------------: |
-| `id`           | INT (11, AUTO_INCREMENT) | Unique ID for each category.                        |
-| `name`         | VARCHAR(50)            | Name of the category (e.g., Restaurant).              |
-| `type`         | VARCHAR(50)            | Type of the category (foods or drinks).               |
+### Relationships:
+- **One-to-Many** with `categories`: A category can be associated with many restaurants.
+- **One-to-Many** with `kecamatan`: A kecamatan (district) can have many restaurants.
+- **One-to-Many** with `ratings`: A restaurant can have many ratings.
+- **One-to-Many** with `operatinghours`: A restaurant can have multiple operating hours.
 
-### **2. Places Table**
+---
 
-- Stores information about dining places (name, category, operating hours, location).
-  
-|   **Column**            |          **Type**         |                  **Description**                         |
-| :---------------------: | :-----------------------: | :------------------------------------------------------: |
-| `id`                    | INT (11, AUTO_INCREMENT)  | Unique ID for each place.                                 |
-| `name`                  | VARCHAR(255)              | Name of the place (e.g., restaurant, park, etc.).         |
-| `address`               | TEXT                      | Address of the place.                                    |
-| `phone_number`          | VARCHAR(20)               | Phone number of the place (optional).                    |
-| `latitude`              | DOUBLE                    | Latitude coordinate of the place (optional).             |
-| `longitude`             | DOUBLE                    | Longitude coordinate of the place (optional).            |
-| `category_id`           | INT (11)                  | Reference to the category ID associated with the place.  |
-| `categorize_weather`    | VARCHAR(50)               | Weather category of the place (optional).                |
-| `maps_url`              | TEXT                      | URL to the location on maps (optional).                  |
-| `min_price`             | INT (11)                  | Minimum price at the place (optional).                   |
-| `max_price`             | INT (11)                  | Maximum price at the place (optional).                   |
-| `kecamatan_id`          | INT (11)                  | ID of the sub-district or neighborhood (optional).       |
-| `eco_friendly`          | TINYINT(1)                | Indicates if the place is eco-friendly (0 for No, 1 for Yes). |
+## 2. `categories` Table
+This table stores information about food or restaurant categories, such as Food, Drinks, etc.
 
-### **3. OperatingHours Table**
+### Key Columns:
+- **id**: Primary key of the table.
+- **name**: Name of the category.
 
-- Stores the operating hours for each dining place.
+### Relationships:
+- **One-to-Many** with `places`: A category can be used by many restaurants. This relationship is defined by the `category_id` in the `places` table.
 
-|   **Column**       |       **Type**        |                  **Description**                             |
-| :----------------: | :-------------------: | :----------------------------------------------------------: |
-| `id`               | INT (11, AUTO_INCREMENT) | Unique ID for each operating hour record.                     |
-| `place_id`         | INT (11)              | Reference to the place ID associated with the operating hours. |
-| `day`              | VARCHAR(50)           | Day of the week (e.g., Monday, Tuesday, etc.).                |
-| `opening_time`     | TIME                  | The opening time for the place on that specific day.          |
-| `closing_time`     | TIME                  | The closing time for the place on that specific day.          |
+---
 
-### **4. Ratings Table**
+## 3. `kecamatan` Table
+This table stores data about districts (kecamatan).
 
-- Stores ratings and reviews provided by users for dining places.
+### Key Columns:
+- **id**: Primary key of the table.
+- **name**: Name of the district.
 
-| **Column**  |   **Type**   |        **Description**         |
-| :---------: | :----------: | :----------------------------: |
-| `rating_id` |   INT (PK)   |       Unique rating ID.        |
-| `place_id`  |   INT (FK)   |        Dining place ID.        |
-|  `rating`   | DECIMAL(2,1) |      Rating value (0-5).       |
-|  `review`   |     TEXT     | Review text provided by users. |
+### Relationships:
+- **One-to-Many** with `places`: A district can have many restaurants. This relationship is defined by the `kecamatan_id` in the `places` table.
 
-### **5. Sub-districts**
+---
 
-- Stores information about sub-districts (`kecamatan`) and their associated city/regency (`kab_kota`).
+## 4. `ratings` Table
+This table stores restaurant ratings and the number of reviews.
 
-|   **Column**   |       **Type**        |                  **Description**                             |
-| :------------: | :-------------------: | :----------------------------------------------------------: |
-| `id`           | INT (11, AUTO_INCREMENT) | Unique ID for each sub-district (kecamatan).                   |
-| `name`         | VARCHAR(255)           | Name of the sub-district (e.g., Kecamatan A).                  |
-| `kab_kota`     | VARCHAR(255)           | Name of the associated city or regency (kabupaten/kota).       |
+### Key Columns:
+- **id**: Primary key of the table.
+- **place_id**: Foreign key referencing the `places` table (indicating the restaurant being rated).
+- **rating**: Rating value of the restaurant (decimal number).
+- **reviews**: Number of reviews for the restaurant.
 
-### **Relationships Between Tables**
+### Relationships:
+- **Many-to-One** with `places`: Many ratings are associated with one restaurant.
 
-- **places ↔ categories**: The **places** table is related to the **categories** table through the `category_id`.
-- **places ↔ operatinghours**: The **operatinghours** table is related to the **places** table via the `place_id`.
-- **places ↔ ratings**: The **ratings** table is related to the **places** table via the `place_id`.
+---
+
+## 5. `operatinghours` Table
+This table stores the operating hours for each restaurant based on the day.
+
+### Key Columns:
+- **id**: Primary key of the table.
+- **place_id**: Foreign key referencing the `places` table (indicating the restaurant).
+- **day**: The operational day (Monday, Tuesday, etc.).
+- **opening_time**: Opening time of the restaurant.
+- **closing_time**: Closing time of the restaurant.
+
+### Relationships:
+- **Many-to-One** with `places`: Many operating hours are associated with one restaurant.
+
+---
+
+## Relationships Between Tables
+
+- **`places`** is the central table:
+  - It connects to the `categories` table through the `category_id`.
+  - It connects to the `kecamatan` table through the `kecamatan_id`.
+  - It connects to the `ratings` table through the `place_id`.
+  - It connects to the `operatinghours` table through the `place_id`.
+
+- **`categories`** serves as a reference for restaurant categories, used in the `places` table to categorize restaurants.
+- **`kecamatan`** serves as a reference for the location of each restaurant, stored in the `places` table.
+- **`ratings`** stores feedback on each restaurant and links to `places` via the `place_id`.
+- **`operatinghours`** stores the operational hours of each restaurant and is connected to `places` via the `place_id`.
+
+---
+
+## Example Relational Diagram
+places ↔ categories (1 category, many places) categories.id ↔ places.category_id
+
+places ↔ kecamatan (1 kecamatan, many places) kecamatan.id ↔ places.kecamatan_id
+
+places ↔ ratings (1 place, many ratings) places.id ↔ ratings.place_id
+
+places ↔ operatinghours (1 place, many operating hours) places.id ↔ operatinghours.place_id
 
 ---
 
