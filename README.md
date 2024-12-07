@@ -1,5 +1,5 @@
 # 🍲 KulinerKita - Cloud Computing
-## 🍴 KulinerKIta (Team C242-PS155) - CC Repository
+## 🍴 KulinerKita (Team C242-PS155) - CC Repository
 
 **KulinerKita Cloud Computing Repository** for Bangkit Capstone Project. Building Scalable Cloud Infrastructure for a Culinary Platform with Serverless Functions and Cloud Databases.
 
@@ -9,11 +9,9 @@
 | Dzaki Akmal Rabbani Alqadrie | C312B4KY1214  |  Cloud Computing  | Cloud Engineer |[dzakiakmal](https://github.com/dzakiakmal)|
 | Fanes Arasadina          | C421B4KX1388 |  Cloud Computing  | Cloud Engineer | [fanesarasy](https://github.com/fanesarasy) |
 
-**This is the Cloud Computing repository for the KulinerKita application.**  
-
 ---  
 
-**KulinerKita** is a dynamic mobile app that helps users discover dining places such as restaurants, cafes, and street food. This section of the project focuses on the **Cloud Computing** aspect, which includes cloud infrastructure setup, database management, and server-side logic. Utilizing cloud services, it enhances the app's scalability, performance, and real-time features.
+**KulinerKita** is a dynamic mobile app that helps users discover dining places. This section of the project focuses on the **Cloud Computing** aspect, which includes cloud infrastructure setup, database management, and server-side logic. Utilizing cloud services, it enhances the app's scalability, performance, and real-time features.
 
 ## Implementation Section:
 - **Cloud Database Management**: Stores and manages data about dining places, categories, reviews, operating hours, and more.
