@@ -10,9 +10,14 @@ Members of Cloud Computing for Bangkit Academy Capstone Team C242-PS155
 
 ---  
 
-# Restaurant Search API
+**KulinerKita** is a dynamic mobile app that helps users discover dining places such as restaurants, cafes, and street food. This section of the project focuses on the **Cloud Computing** aspect, which includes cloud infrastructure setup, database management, and server-side logic. Utilizing cloud services, it enhances the app's scalability, performance, and real-time features.
 
-A dynamic restaurant search API built with Node.js and Express. This API supports a wide range of filters for querying restaurants based on location, eco-friendliness, weather preferences, operating hours, ratings, reviews, and price range.
+## Implementation Section:
+- **Cloud Database Management**: Stores and manages data about dining places, categories, reviews, operating hours, and more.
+- **APIs**: Enables communication between the mobile app and cloud resources, allowing for efficient search, filtering, and user interactions.
+- **Scalability & Performance**: Uses cloud solutions to ensure the app can handle growing data and increasing numbers of users.
+
+---
 
 ## Features
 
@@ -29,8 +34,8 @@ A dynamic restaurant search API built with Node.js and Express. This API support
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/kulinerkita/restaurant-search-api.git
-   cd restaurant-search-api
+   git clone https://github.com/kulinerkita/CC.git
+   cd backend-v2
    ```
 
 2. Install dependencies:
@@ -132,35 +137,43 @@ The application uses **Cloud SQL (MySQL)** for structured data storage. Below ar
 
 - Stores categories of dining places (e.g., restaurant, cafe, street food).
 
-|  **Column**   |  **Type**   |             **Description**              |
-| :-----------: | :---------: | :--------------------------------------: |
-| `category_id` |  INT (PK)   |           Unique category ID.            |
-|    `name`     | VARCHAR(50) | Name of the category (e.g., Restaurant). |
-| `description` |    TEXT     |       Description of the category.       |
+|   **Column**   |        **Type**        |             **Description**                           |
+| :------------: | :--------------------: | :---------------------------------------------------: |
+| `id`           | INT (11, AUTO_INCREMENT) | Unique ID for each category.                        |
+| `name`         | VARCHAR(50)            | Name of the category (e.g., Restaurant).              |
+| `type`         | VARCHAR(50)            | Type of the category (foods or drinks).               |
 
 ### **2. Places Table**
 
 - Stores information about dining places (name, category, operating hours, location).
-
-|  **Column**   |   **Type**   |          **Description**           |
-| :-----------: | :----------: | :--------------------------------: |
-|  `place_id`   |   INT (PK)   |      Unique dining place ID.       |
-|    `name`     | VARCHAR(100) |     Name of the dining place.      |
-| `category_id` |   INT (FK)   |  Category ID of the dining place.  |
-|  `latitude`   | DECIMAL(9,6) | Latitude coordinate of the place.  |
-|  `longitude`  | DECIMAL(9,6) | Longitude coordinate of the place. |
+  
+|   **Column**            |          **Type**         |                  **Description**                         |
+| :---------------------: | :-----------------------: | :------------------------------------------------------: |
+| `id`                    | INT (11, AUTO_INCREMENT)  | Unique ID for each place.                                 |
+| `name`                  | VARCHAR(255)              | Name of the place (e.g., restaurant, park, etc.).         |
+| `address`               | TEXT                      | Address of the place.                                    |
+| `phone_number`          | VARCHAR(20)               | Phone number of the place (optional).                    |
+| `latitude`              | DOUBLE                    | Latitude coordinate of the place (optional).             |
+| `longitude`             | DOUBLE                    | Longitude coordinate of the place (optional).            |
+| `category_id`           | INT (11)                  | Reference to the category ID associated with the place.  |
+| `categorize_weather`    | VARCHAR(50)               | Weather category of the place (optional).                |
+| `maps_url`              | TEXT                      | URL to the location on maps (optional).                  |
+| `min_price`             | INT (11)                  | Minimum price at the place (optional).                   |
+| `max_price`             | INT (11)                  | Maximum price at the place (optional).                   |
+| `kecamatan_id`          | INT (11)                  | ID of the sub-district or neighborhood (optional).       |
+| `eco_friendly`          | TINYINT(1)                | Indicates if the place is eco-friendly (0 for No, 1 for Yes). |
 
 ### **3. OperatingHours Table**
 
 - Stores the operating hours for each dining place.
 
-|  **Column**  | **Type** |        **Description**         |
-| :----------: | :------: | :----------------------------: |
-|  `hours_id`  | INT (PK) | Unique ID for operating hours. |
-|  `place_id`  | INT (FK) |        Dining place ID.        |
-|    `day`     |   ENUM   |        Day of the week.        |
-| `open_time`  |   TIME   |   Opening time of the place.   |
-| `close_time` |   TIME   |   Closing time of the place.   |
+|   **Column**       |       **Type**        |                  **Description**                             |
+| :----------------: | :-------------------: | :----------------------------------------------------------: |
+| `id`               | INT (11, AUTO_INCREMENT) | Unique ID for each operating hour record.                     |
+| `place_id`         | INT (11)              | Reference to the place ID associated with the operating hours. |
+| `day`              | VARCHAR(50)           | Day of the week (e.g., Monday, Tuesday, etc.).                |
+| `opening_time`     | TIME                  | The opening time for the place on that specific day.          |
+| `closing_time`     | TIME                  | The closing time for the place on that specific day.          |
 
 ### **4. Ratings Table**
 
@@ -173,6 +186,16 @@ The application uses **Cloud SQL (MySQL)** for structured data storage. Below ar
 |  `rating`   | DECIMAL(2,1) |      Rating value (0-5).       |
 |  `review`   |     TEXT     | Review text provided by users. |
 
+### **5. Sub-districts**
+
+- Stores information about sub-districts (`kecamatan`) and their associated city/regency (`kab_kota`).
+
+|   **Column**   |       **Type**        |                  **Description**                             |
+| :------------: | :-------------------: | :----------------------------------------------------------: |
+| `id`           | INT (11, AUTO_INCREMENT) | Unique ID for each sub-district (kecamatan).                   |
+| `name`         | VARCHAR(255)           | Name of the sub-district (e.g., Kecamatan A).                  |
+| `kab_kota`     | VARCHAR(255)           | Name of the associated city or regency (kabupaten/kota).       |
+
 ---
 
 ## **Deployment Steps**
@@ -182,7 +205,7 @@ The application uses **Cloud SQL (MySQL)** for structured data storage. Below ar
 1. Create a **Cloud SQL (MySQL)** instance in the GCP Console.
 2. Create the database and tables based on the schema provided above.
 3. Configure database access for the app deployed in App Engine or Cloud Functions.
-
+   
 ### **2. API Deployment to Google App Engine**
 
 1. Set up your application in Google App Engine, using an `app.yaml` file for configuration.
@@ -190,7 +213,7 @@ The application uses **Cloud SQL (MySQL)** for structured data storage. Below ar
    ```bash
    gcloud app deploy
    ```
-
+   
 ### **3. Cloud Run Deployment for ML API**
 
 1. Create a **Cloud Run** for the prediction API.
@@ -198,7 +221,6 @@ The application uses **Cloud SQL (MySQL)** for structured data storage. Below ar
    ```bash
    gcloud run deploy predict --runtime python39 --trigger-http --allow-unauthenticated
    ```
-
 ---
 
 ## **How to Run Locally**
