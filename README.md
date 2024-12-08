@@ -271,18 +271,73 @@ places ↔ operatinghours (1 place, many operating hours) places.id ↔ operatin
 
 ## **How to Run Locally**
 
-1. Clone this repository to your local machine.
-2. Install the necessary dependencies:
+1. **Clone the Repository**
+   Clone this repository to your local machine using the following command:
+   ```bash
+   git clone https://github.com/kulinerkita/CC.git
+   cd ML-Backend-API
+   ```
+
+2. **Install Dependencies**
+   Navigate to the project directory and install the required dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-3. Set up the database connection to **Cloud SQL** (use the connection string provided by GCP).
-4. Run the application locally:
-   ```bash
-   python app.py
-   ```
-5. Test the endpoints using Postman or any API testing tool.
 
+3. **Set Up Database Connection**
+   Configure the database connection to **Cloud SQL** by using the connection string provided by Google Cloud Platform (GCP). Ensure you have the correct permissions and access to the Cloud SQL instance.
+
+4. **Run the Application Locally**
+   Use the Flask CLI to start the application:
+   ```bash
+   flask --app app run
+   ```
+   The application will typically run on `http://127.0.0.1:5000` by default.
+
+5. **Test the Endpoints**
+   Use Postman or any API testing tool to test the application. Here is an example endpoint and payload:
+   
+   **Endpoint:**
+   ```
+   https://ml-model-predict-636814706436.asia-southeast2.run.app/predict
+   ```
+
+   **Request Payload:**
+   ```json
+   {
+       "latitude": -7.579666911699041,
+       "longitude": 110.78387592210068
+   }
+   ```
+
+   **Sample Response:**
+   ```json
+   {
+       "data": [
+           {
+               "address": "Jl. Gajahmada No.34, Timuran, Kec. Banjarsari, Kota Surakarta, Jawa Tengah 57131",
+               "categorize_weather": "Dingin",
+               "category_id": 7,
+               "eco_friendly": 1,
+               "id": 313,
+               "kecamatan_id": 2,
+               "latitude": -7.5809585,
+               "longitude": 110.7849666,
+               "maps_url": "https://www.google.com/maps/place/Nasi+Liwet+Yu+Djamboel/@-7.5809585,110.7849666,14z/data=!4m11!1m3!2m2!1ssego+liwet+solo!6e5!3m6!1s0x2e7a17745574dcbd:0x6d6246af38815618!8m2!3d-7.5675501!4d110.8177592!15sCg9zZWdvIGxpd2V0IHNvbG9aESIPc2VnbyBsaXdldCBzb2xvkgEKcmVzdGF1cmFudOABAA!16s%2Fg%2F11f6cyx32n?authuser=0&entry=ttu&g_ep=EgoyMDI0MTEwNi4wIKXMDSoASAFQAw%3D%3D",
+               "max_price": 25000,
+               "min_price": 1000,
+               "name": "Nasi Liwet Yu Djamboel",
+               "operating_hours": {
+                   "closing_time": "23:00:00",
+                   "opening_time": "18:00:00"
+               },
+               "phone_number": "0858783102274",
+               "rating": "4.50",
+               "reviews": 16
+           }
+       ]
+   }
+   
 ---
 
 ## Contributing
