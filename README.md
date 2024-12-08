@@ -73,7 +73,7 @@
 
 ## API Endpoints
 
-### `GET /restaurants/search`
+### `GET /restaurants/search?`
 
 Search for restaurants based on various filters.
 
