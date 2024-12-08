@@ -53,13 +53,14 @@
    cd backend-v2
    ```
 
-2. Install dependencies:
+2. Initialize project and install dependencies:
    ```bash
-   npm install
+   npm init -y
+   npm install express mysql2
    ```
 
 3. Set up the database connection:
-   - Create a `db.js` file in the project root with your database connection configuration.
+   - Modify a `db.js` file in the project root with your own database connection configuration.
 
 4. Start the server:
    ```bash
