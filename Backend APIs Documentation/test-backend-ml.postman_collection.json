@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "e96bc369-ae40-451c-a86b-eedcbd800c72",
+		"name": "test-backend-ml",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39591673",
+		"_collection_link": "https://www.postman.com/kulinerkita-v2-test-okay/workspace/kulinerkita-v2/collection/39682356-e96bc369-ae40-451c-a86b-eedcbd800c72?action=share&source=collection_link&creator=39591673"
+	},
+	"item": [
+		{
+			"name": "https://ml-model-predict-636814706436.asia-southeast2.run.app/predict",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"latitude\": -7.56217192454353,\r\n    \"longitude\": 110.83948552592317\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ml-model-predict-636814706436.asia-southeast2.run.app/predict",
+					"protocol": "https",
+					"host": [
+						"ml-model-predict-636814706436",
+						"asia-southeast2",
+						"run",
+						"app"
+					],
+					"path": [
+						"predict"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
