@@ -50,7 +50,6 @@
 1. Clone this repository:
    ```bash
    git clone https://github.com/kulinerkita/CC.git
-   cd backend-v2
    ```
 
 2. Initialize project and install dependencies:
