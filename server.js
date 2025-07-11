@@ -15,7 +15,7 @@ const queryDatabase = async (query, params = []) => {
   }
 };
 
-// Endpoint untuk restoran dengan pencarian dinamis
+// Endpoint untuk restoran dengan pencarian dinamisnp
 app.get('/restaurants/search', async (req, res) => {
   const { 
     city, 
