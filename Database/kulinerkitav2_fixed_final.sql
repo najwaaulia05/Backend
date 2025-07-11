@@ -6,6 +6,7 @@
 -- Generation Time: Dec 02, 2024 at 05:52 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
+SET FOREIGN_KEY_CHECKS=0;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `kulinerkitav2`
 --
-CREATE DATABASE IF NOT EXISTS `kulinerkitav2` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `kulinerkitav2`;
+USE `railway`;
 
 -- --------------------------------------------------------
 
@@ -31,7 +31,7 @@ USE `kulinerkitav2`;
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `type` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -67,7 +67,7 @@ INSERT INTO `categories` (`id`, `name`, `type`) VALUES
 
 DROP TABLE IF EXISTS `kecamatan`;
 CREATE TABLE `kecamatan` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL ,
   `name` varchar(255) NOT NULL,
   `kab_kota` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -4394,7 +4394,7 @@ INSERT INTO `operatinghours` (`id`, `place_id`, `day`, `opening_time`, `closing_
 
 DROP TABLE IF EXISTS `places`;
 CREATE TABLE `places` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `address` text NOT NULL,
   `phone_number` varchar(20) DEFAULT NULL,
@@ -5659,11 +5659,6 @@ INSERT INTO `ratings` (`id`, `place_id`, `rating`, `reviews`) VALUES
 -- Indexes for dumped tables
 --
 
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `kecamatan`
@@ -5682,7 +5677,6 @@ ALTER TABLE `operatinghours`
 -- Indexes for table `places`
 --
 ALTER TABLE `places`
-  ADD PRIMARY KEY (`id`),
   ADD KEY `category_id` (`category_id`);
 
 --
@@ -5752,3 +5746,5 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+SET FOREIGN_KEY_CHECKS=1;
